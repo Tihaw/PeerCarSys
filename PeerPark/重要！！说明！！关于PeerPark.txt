@@ -1,0 +1,57 @@
+测试和使用方法：
+1、向服务器上传整个sql数据库和数据。（handout.sql）
+2、修改include下config.ini文件，改为原数据，对应的自己的postgresql用户密码。
+3、向服务器上传peerpark文件夹下页面文件。
+
+
+
+
+
+
+PeerPark体系设置和更改：
+1、使用提供数据，更改login-name为postgres的用户
+	更改search path 为 PeerPark
+	导入数据库schema。建立15个数据表table 2个序列seq 1个触发器trigger 3个域domain
+
+2、修改include下 config.ini 文件。关于数据库服务器名称和角色名称密码。
+
+3、修改数据库，暂时移除外键以添加数据。
+	导入三组用户member数据、plan数据  等等各种数据以备测试。
+	在导入数据库时，对sql文件作出修改。
+	添加transaction：
+		①添加membershipplan。  bigcar和smallcar
+		②添加member。  多个用户信息(abc, abcpass | missk, misskpass| user, pass)
+		③CarType  bigcar和smallcar
+		④MemberPhone  写入测试数据
+		⑤BillingAccount  写入测试数据
+		⑥BankAccount  写入测试数据
+		⑦CreditCard  写入测试数据
+		⑧PayPal 写入测试数据
+		⑨Driver  写入测试数据
+		①○ParkTag  写入测试数据
+		①①Car  写入测试数据
+		①②ParkPod  写入测试数据
+		①③Location  写入测试数据
+		①④ParkBay  写入测试数据
+		
+	
+4、database.php
+	getUserDetails()函数设计填写；实现获取用户信息；多表联合查询；
+	checkLogin()函数设计填写；实现检查登陆信息；没有使用hash value；
+	searchBay()函数设计填写；实现搜索停车点；联合多表查询；
+	getBays()函数设计填写；实现搜索所有停车点；
+	getPrefBayInformation()函数设计填写；实现所有用户pref的bay；
+	getBayInformation()函数设计填写；实现获取Bay信息；
+	makeBooking()函数设计填写；实现订车位功能；注意。条件：1、车子名称Car必须是用户拥有的车；2、停车场需要未被占用
+	getOpenBookings()函数设计填写；实现查看订单；
+	getBookingInfo()函数设计填写；实现查看订单详情；
+	getCars()函数设计填写；实现查看所拥有车辆；
+		
+5、原系统BUGbay  list.php 关于检查search 条件筛选逻辑错误，已修改。默认HOME BAY页面显示用户pref的bay。
+
+6、未添加自动删除过期账单功能，在网页页面baylist.PHP添加链接清空数据表格，可以继续订单。 
+
+7、php使用PDO 的prepare方式防止sql注入；
+
+
+	
